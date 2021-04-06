@@ -15,6 +15,19 @@
         <li><a href="account.php" id="styleLinkAccount">Личный кабинет</a></li>
     </ul>
 </div>
+<input type="checkbox" class="openSidebarMenu" id="openSidebarMenu">
+<label for="openSidebarMenu" class="sidebarIconToggle">
+  <div class="spinner diagonal part-1"></div>
+  <div class="spinner horizontal"></div>
+  <div class="spinner diagonal part-2"></div>
+</label>
+<div id="sidebarMenu">
+  <ul class="sidebarMenuInner">
+    <li><a href="play.php" >Играть</a></li>
+    <li><a href="#" >Магазин</a></li>
+    <li><a href="#">Таблица лидеров</a></li>
+  </ul>
+</div>
 <div class="main center">
     <ul class="hr">
       <li><h1 align="center" id="yourteam">Твоя команда</h1></li>

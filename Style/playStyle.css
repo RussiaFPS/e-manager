@@ -193,7 +193,7 @@ input[type=checkbox]:checked ~ .sidebarIconToggle > .diagonal.part-2 {
 #NameGame{
     text-align:center;
     display:inline-block;
-    margin-top: auto;
+    margin-top: 20px;
     color: white;
     font-family: 'Varela Round', sans-serif;
     font-size: 25px;
