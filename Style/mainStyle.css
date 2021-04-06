@@ -231,3 +231,16 @@ ul li{
 #Form_registr{
     margin-top: 100px;
 }
+
+#AccountHello{
+    display:block;
+    font-size: 58px;
+    font-family: 'Varela Round', sans-serif;
+}
+
+#ButtonExit{
+    margin: auto;
+    display: block;
+    margin-top: 25px;
+    position: relative;
+}
