@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Главная</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link rel="stylesheet" href="/Style/mainStyle.css">   
+</head>
+<body>
+<div class="header">
+    <ul class="hr">
+        <li><a href="index.html" id="NameGame">e-Manager</a></li>
+        <li><a href="account.php" id="styleLinkAccount">Личный кабинет</a></li>
+    </ul>
+</div>
+  <input type="checkbox" class="openSidebarMenu" id="openSidebarMenu">
+  <label for="openSidebarMenu" class="sidebarIconToggle">
+    <div class="spinner diagonal part-1"></div>
+    <div class="spinner horizontal"></div>
+    <div class="spinner diagonal part-2"></div>
+  </label>
+  <div id="sidebarMenu">
+    <ul class="sidebarMenuInner">
+      <li><a href="play.php" >Играть</a></li>
+      <li><a href="#" >Магазин</a></li>
+      <li><a href="#">Таблица лидеров</a></li>
+    </ul>
+  </div>
+  <div id='center' class="main center">
+   <video autoplay muted loop id="myVideo">
+    <source src="/Source/video1.mp4" type="video/mp4">
+   </video>
+  </div>
+</body>
+</html>
