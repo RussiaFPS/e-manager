@@ -125,7 +125,7 @@ function myFunction5() {
   document.getElementById("myDropdown5").classList.toggle("show");
 }
 
-// Закройте выпадающее меню, если пользователь щелкает за его пределами
+// Закройте выпадающее меню, если пользователь щелкает за его пределами.
 window.onclick = function(event) {
   if (!event.target.matches('.dropbtn')) {
     var dropdowns = document.getElementsByClassName("dropdown-content");
