@@ -64,6 +64,19 @@
                <p>Привет  <?php $_COOKIE['user'] ?>.Чтобы выйти нажмите  <a href="php/exit.php">здесь</a> </p>
            <?php endif; ?>
 
+          <div align="center" >
+          <?php
+          if($_COOKIE['user']==''):?>
+        <?php else:?>
+                <div align="center" >
+                <input type="image" id="Avatar" src="Source/avatar.jpg">
+                </div>
+            <p id="AccountHello"><?=$_COOKIE['user']?></p>
+                </div>
+            <form action="exit.php">
+            <button id="ButtonExit" class="btn btn-success">Выйти</button>
+            </form>
+          <?php endif;?>
         </div>
     </div>
 </body>

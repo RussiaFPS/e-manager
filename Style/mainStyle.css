@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css?family=Varela+Round');
-
 body {
     margin: 0;
     font-family: "Lato", sans-serif;
@@ -42,6 +40,7 @@ video::-webkit-media-controls {
   display:none !important;
 }
 
+@import url('https://fonts.googleapis.com/css?family=Varela+Round');
 html, body {
     overflow-x: hidden;
     height: 100%;
@@ -231,4 +230,17 @@ ul li{
 }
 #Form_registr{
     margin-top: 100px;
+}
+
+#AccountHello{
+    display:block;
+    font-size: 58px;
+    font-family: 'Varela Round', sans-serif;
+}
+
+#ButtonExit{
+    margin: auto;
+    display: block;
+    margin-top: 25px;
+    position: relative;
 }
