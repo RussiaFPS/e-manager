@@ -1,4 +1,20 @@
-<?php
+﻿<?php
+
+$server = $_SERVER['SERVER_ADDR'];
+$username = 'root';
+$password = 'root';
+$dbname = 'web-base';
+$charset = 'utf8';
+
+$connection = new mysqli($server, $username, $password, $dbname);
+
+if($connection->connect_error){
+	die("Ошибка соединения".$connection->connect_error);
+}
+
+if(!$connection->set_charset($charset)){
+	echo "Ошибка установки кодировки UTF8";
+}
 $mysql = new mysqli('localhost', 'root', 'root', 'register-bd');
 if ($mysql->connect_error) {
     die("<script>swal(\"Ошибка!\", \"Не удается установить соединение с базой данных\", \"error\");</script>");
@@ -9,20 +25,23 @@ if ($mysql->connect_error) {
        if ($_COOKIE['user']==''):
         header('Location:/index.html');
 else:?>
-
-<!DOCTYPE html>
-<html lang="en">
+?>
+<!doctype html>
+<html>
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
     <title>Играть</title>
+    <meta charset="UTF-8">
+    <title>Личный кабинет</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
     <link rel="stylesheet" href="/Style/playStyle.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-
 </head>
+
 <body>
+####
 <div class="header">
     <ul class="hr">
         <li><a href="index.html" id="NameGame">e-Manager</a></li>
@@ -167,5 +186,48 @@ window.onclick = function(event) {
 }
 </script>
 <?php endif;?>
+####
+<form action="files.php" method="post" enctype="multipart/form-data">
+</form>
+<?php
+$id = $_GET[ 'id' ];
+$card = $_GET[ 'card' ];
+if (  !empty( $id && $card ))
+{
+    if($card == '1'){
+        if($id == '1'){
+            $query = $connection->query("SELECT * FROM images where id = 1");
+            while($row = $query->fetch_assoc()){
+                $show_img = base64_encode($row['img']);?>
+                <img src="data:image/jpeg;base64, <?=$show_img ?>" alt="">
+            <?php }
+        }
+        if($id == '2'){
+            $query = $connection->query("SELECT * FROM images where id = 2");
+            while($row = $query->fetch_assoc()){
+                $show_img = base64_encode($row['img']);?>
+                <img src="data:image/jpeg;base64, <?=$show_img ?>" alt="">
+            <?php }
+        }
+    }
+    if($card == '2'){
+        if($id == '1'){
+            $query = $connection->query("SELECT * FROM images where id = 1");
+            while($row = $query->fetch_assoc()){
+                $show_img = base64_encode($row['img']);?>
+                <img src="data:image/jpeg;base64, <?=$show_img ?>" alt="">
+            <?php }
+        }
+        if($id == '2'){
+            $query = $connection->query("SELECT * FROM images where id = 2");
+            while($row = $query->fetch_assoc()){
+                $show_img = base64_encode($row['img']);?>
+                <img src="data:image/jpeg;base64, <?=$show_img ?>" alt="">
+            <?php }
+        }
+    }
+}?>
+
+
 </body>
 </html>
