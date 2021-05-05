@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="/Style/mainStyle.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+             <meta name=viewport content="width=1920">
+             <meta name=viewport content="height=800">
 </head>
 <body>
 <div class="header">

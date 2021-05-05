@@ -4,10 +4,13 @@
     <meta charset="UTF-8">
     <title>Играть</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
     <link rel="stylesheet" href="/Style/playStyle.css">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
         <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+         <meta name=viewport content="width=1920">
+         <meta name=viewport content="height=800">
 </head>
 <style>
    body {
@@ -39,10 +42,54 @@
       </ul>
     </div>
     <div class="inner">
-        <h1>Моя команда<h1>
+        <h1>Моя команда</h1>
     </div>
-</body>
-</head>
+
+    <?php
+    if($_COOKIE['user']!=''){
+    ?>
+    <div class="container mt-4">
+    <form action="select.php" method="POST">
+        <select name="select_card1" class="selectpicker form-control" style='position:absolute;left:5%;top:75%;width:170px;height:40px'>
+            <?php
+            $UserName=$_COOKIE['user'];
+            $select1;$select2;$select3;$select4;$select5;$select6;$select7;$select8;$select9;$select10;
+            $mysql = new mysqli('localhost', 'root', 'root', 'register-bd');
+                $result_select = $mysql->query("SELECT * FROM `inventory` WHERE `login`='$UserName'");
+                    while($row = mysqli_fetch_assoc($result_select))
+                    {
+                        $select1[] = $row['viewer_name1'];
+                        $select2[] = $row['viewer_name2'];
+                        $select3[] = $row['viewer_name3'];
+                        $select4[] = $row['viewer_name4'];
+                        $select5[] = $row['viewer_name5'];
+                        $select6[] = $row['viewer_name6'];
+                        $select7[] = $row['viewer_name7'];
+                        $select8[] = $row['viewer_name8'];
+                        $select9[] = $row['viewer_name9'];
+                        $select10[] = $row['viewer_name10'];
+                    }
+                    $select1 = join(',', $select1);$select2 = join(',', $select2);$select3 = join(',', $select3);$select4 = join(',', $select4);$select5 = join(',', $select5);$select6 = join(',', $select6);$select7 = join(',', $select7);$select8 = join(',', $select8);$select9 = join(',', $select9);$select10 = join(',', $select10);
+            ?>
+            <option value="" selected disabled hidden>Выбрать игрока</option>
+            <option value= <?php echo $select1?> ><?php echo $select1;?></option>;
+            <option value= <?php echo $select2?> ><?php echo $select2;?></option>;
+            <option value= <?php echo $select3?> ><?php echo $select3;?></option>;
+            <option value= <?php echo $select4?> ><?php echo $select4;?></option>;
+            <option value= <?php echo $select5?> ><?php echo $select5;?></option>;
+            <option value= <?php echo $select6?> ><?php echo $select6;?></option>;
+            <option value= <?php echo $select7?> ><?php echo $select7;?></option>;
+            <option value= <?php echo $select8?> ><?php echo $select8;?></option>;
+            <option value= <?php echo $select9?> ><?php echo $select9;?></option>;
+            <option value= <?php echo $select10?> ><?php echo $select10;?></option>;
+        </select>
+        <input type="submit" value="OK" style='position:absolute;left:50%;top:85%;width:170px;height:40px'>
+        </form>
+    </div>
+    <?php
+    }
+    ?>
+  </body>
 <?php
 $UserName=$_COOKIE['user'];
 $mysql = new mysqli('localhost', 'root', 'root', 'register-bd');
@@ -144,5 +191,7 @@ echo "<img src=\"".$result_player2."\" width=\"300\" height=\"400\" style='posit
 echo "<img src=\"".$result_player3."\" width=\"300\" height=\"400\" style='position:absolute;left:40%;top:25%;''>";
 echo "<img src=\"".$result_player4."\" width=\"300\" height=\"400\" style='position:absolute;left:60%;top:25%;''>";
 echo "<img src=\"".$result_player5."\" width=\"300\" height=\"400\" style='position:absolute;left:80%;top:25%;''>";
+
+$mysql->close();
 
 ?>
