@@ -7,7 +7,7 @@ if ($mysql->connect_error) {
 
 <?php
        if ($_COOKIE['user']==''):
-        header('Location:/index.html');
+        header('Location:/account.php');
 else:?>
 
 <!DOCTYPE html>

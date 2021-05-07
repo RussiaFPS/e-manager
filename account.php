@@ -7,12 +7,26 @@
     <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
     <link rel="stylesheet" href="/Style/mainStyle.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-
+             <meta name=viewport content="width=1920">
+             <meta name=viewport content="height=800">
+<style>
+#NameGame1{
+    text-align:center;
+    display:inline-block;
+    margin-top: 20px;
+    margin-bottom: 500px;
+    color: white;
+    font-family: 'Varela Round', sans-serif;
+    font-size: 25px;
+    text-decoration: none;
+    position: relative;
+}
+</style>
 </head>
 <body>
 <div class="header">
     <ul class="hr">
-        <li><a href="index.html" id="NameGame">e-Manager</a></li>
+        <li><a href="index.html" id="NameGame1">e-Manager</a></li>
         <li><a href="account.php" id="styleLinkAccount">Личный кабинет</a></li>
     </ul>
 </div>
@@ -34,7 +48,7 @@
       <?php
        if ($_COOKIE['user']==''):
         ?>
-        <h1 id="MainForms">Авторизуйтесь или зарегиструруйтесь</h1>
+        <h1 id="MainForms">Авторизуйтесь или зарегистрируйтесь</h1>
         <div class="row" id="Form_registr">
            <div class="col">
              <h1>Форма регистрации</h1>
@@ -73,6 +87,15 @@
                 </div>
             <p id="AccountHello"><?=$_COOKIE['user']?></p>
                 </div>
+            <form action="ChangeLogin.php">
+            <button id="ButtonChangeLogin" class="btn btn-success">Сменить логин</button>
+            </form>
+            <form action="ChangeName.php">
+            <button id="ButtonChangeName" class="btn btn-success">Сменить имя</button>
+            </form>
+            <form action="ChangePass.php">
+            <button id="ButtonChangePass" class="btn btn-success">Сменить пароль</button>
+            </form>
             <form action="exit.php">
             <button id="ButtonExit" class="btn btn-success">Выйти</button>
             </form>

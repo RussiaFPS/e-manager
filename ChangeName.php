@@ -1,26 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Личный кабинет</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
-    <link rel="stylesheet" href="/Style/mainStyle.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <style>
-    #NameGame1{
-        text-align:center;
-        display:inline-block;
-        margin-top: 20px;
-        margin-bottom: 500px;
-        color: white;
-        font-family: 'Varela Round', sans-serif;
-        font-size: 25px;
-        text-decoration: none;
-        position: relative;
-    }
-    </style>
+  <meta charset="UTF-8">
+  <title>Смена имени</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+  <link rel="stylesheet" href="/Style/mainStyle.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+  <style>
+  #NameGame1{
+      text-align:center;
+      display:inline-block;
+      margin-top: 20px;
+      margin-bottom: 500px;
+      color: white;
+      font-family: 'Varela Round', sans-serif;
+      font-size: 25px;
+      text-decoration: none;
+      position: relative;
+  }
+  </style>
 </head>
 <body>
 <div class="header">
@@ -77,37 +78,28 @@
                <p>Привет  <?php $_COOKIE['user'] ?>.Чтобы выйти нажмите  <a href="php/exit.php">здесь</a> </p>
            <?php endif; ?>
 
+
+          <?php
+          if($_COOKIE['user']==''):?>
+        <?php else:?>
+          <div class="container mt-4">
+            <div align="center">
+              <h2>Смена имени</h2>
+            <form  action="checkName.php" method="post">
+              <div class="form-group">
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" name="login"  id="login" placeholder="Введите логин"><br>
+                  <input type="text" class="form-control" name="name"  id="ChangeName" placeholder="Введите новое имя"><br>
+                  <button class="btn btn-success"  type ="submit" >Сменить</button>
+                </div>
+              </div>
+            </form>
+              </div>
+            <form action="exit.php">
+            <button id="ButtonExit" class="btn btn-success">Выйти</button>
+            </form>
+          <?php endif;?>
         </div>
     </div>
 </body>
 </html>
-
-
-
-<?php
-$login = filter_var(trim($_POST['login']), FILTER_SANITIZE_STRING);
-$pass = filter_var(trim($_POST['pass']), FILTER_SANITIZE_STRING);
-
-$pass = md5($pass."QafjhgjgH74");
-
-$mysql = new mysqli('localhost', 'root', 'root', 'register-bd');
-
-if ($mysql->connect_error) {
-    die("<script>swal(\"Ошибка!\", \"Не удается установить соединение с базой данных\", \"error\");</script>");
-}
-
-$result = $mysql->query("SELECT * FROM `users` WHERE `login`='$login' AND `pass` = '$pass'");
-$user = $result->fetch_assoc();
-if(count($user)==0){
-echo"<script>swal(\"Такой пользователь не найден!\", \"Данный пользователь не зарегистрирован\", \"error\");</script>";
-$mysql->close();
-exit();
-}
-
-setcookie('user',$user['name'],time() + 3600,"/");
-setcookie('nowlogin',$login,time() + 3600,"/");
-
-$mysql->close();
-
-header('Location:/account.php');
-?>

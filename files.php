@@ -25,7 +25,7 @@ if ($mysql->connect_error) {
        if ($_COOKIE['user']==''):
         header('Location:/index.html');
 else:?>
-?>
+
 <!doctype html>
 <html>
 <head>
@@ -41,7 +41,6 @@ else:?>
 </head>
 
 <body>
-####
 <div class="header">
     <ul class="hr">
         <li><a href="index.html" id="NameGame">e-Manager</a></li>
@@ -186,16 +185,17 @@ window.onclick = function(event) {
 }
 </script>
 <?php endif;?>
-####
 <form action="files.php" method="post" enctype="multipart/form-data">
 </form>
 <?php
 $id = $_GET[ 'id' ];
 $card = $_GET[ 'card' ];
+
 if (  !empty( $id && $card ))
 {
     if($card == '1'){
         if($id == '1'){
+
             $query = $connection->query("SELECT * FROM images where id = 1");
             while($row = $query->fetch_assoc()){
                 $show_img = base64_encode($row['img']);?>

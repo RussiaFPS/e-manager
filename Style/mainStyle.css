@@ -244,3 +244,27 @@ ul li{
     margin-top: 25px;
     position: relative;
 }
+
+#ButtonChangeName{
+    margin: auto;
+    display: block;
+    margin-top: 25px;
+    position: relative;
+    bottom: auto;
+}
+
+#ButtonChangePass{
+    margin: auto;
+    display: block;
+    margin-top: 25px;
+    position: relative;
+    bottom: auto;
+}
+
+#ButtonChangeLogin{
+    margin: auto;
+    display: block;
+    margin-top: 25px;
+    position: relative;
+    bottom: auto;
+}
