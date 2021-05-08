@@ -86,10 +86,7 @@
                 <input type="image" id="Avatar" src="Source/avatar.jpg">
                 </div>
             <p id="AccountHello"><?=$_COOKIE['user']?></p>
-                </div>
-            <form action="ChangeLogin.php">
-            <button id="ButtonChangeLogin" class="btn btn-success">Сменить логин</button>
-            </form>
+                </div>            
             <form action="ChangeName.php">
             <button id="ButtonChangeName" class="btn btn-success">Сменить имя</button>
             </form>
