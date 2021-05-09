@@ -1,27 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Личный кабинет</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
-    <link rel="stylesheet" href="/Style/mainStyle.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-             <meta name=viewport content="width=1920">
-             <meta name=viewport content="height=800">
-<style>
-#NameGame1{
-    text-align:center;
-    display:inline-block;
-    margin-top: 20px;
-    margin-bottom: 500px;
-    color: white;
-    font-family: 'Varela Round', sans-serif;
-    font-size: 25px;
-    text-decoration: none;
-    position: relative;
-}
-</style>
+  <meta charset="UTF-8">
+  <title>Смена имени</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+  <link rel="stylesheet" href="/Style/mainStyle.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <meta name=viewport content="width=1920">
+  <meta name=viewport content="height=800">
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+  <style>
+  #NameGame1{
+      text-align:center;
+      display:inline-block;
+      margin-top: 20px;
+      margin-bottom: 500px;
+      color: white;
+      font-family: 'Varela Round', sans-serif;
+      font-size: 25px;
+      text-decoration: none;
+      position: relative;
+  }
+  </style>
 </head>
 <body>
 <div class="header">
@@ -78,21 +80,23 @@
                <p>Привет  <?php $_COOKIE['user'] ?>.Чтобы выйти нажмите  <a href="php/exit.php">здесь</a> </p>
            <?php endif; ?>
 
-          <div align="center" >
+
           <?php
           if($_COOKIE['user']==''):?>
         <?php else:?>
-                <div align="center" >
-                <input type="image" id="Avatar" src="Source/avatar.jpg">
+          <div class="container mt-4">
+            <div align="center">
+              <h2>Смена имени</h2>
+            <form  action="checkName.php" method="post">
+              <div class="form-group">
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" name="login"  id="login" placeholder="Введите логин"><br>
+                  <input type="text" class="form-control" name="name"  id="ChangeName" placeholder="Введите новое имя"><br>
+                  <button class="btn btn-success"  type ="submit" >Сменить</button>
                 </div>
-            <p id="AccountHello"><?=$_COOKIE['user']?></p>
-                </div>            
-            <form action="ChangeName.php">
-            <button id="ButtonChangeName" class="btn btn-success">Сменить имя</button>
+              </div>
             </form>
-            <form action="ChangePass.php">
-            <button id="ButtonChangePass" class="btn btn-success">Сменить пароль</button>
-            </form>
+              </div>
             <form action="exit.php">
             <button id="ButtonExit" class="btn btn-success">Выйти</button>
             </form>

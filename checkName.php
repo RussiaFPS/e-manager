@@ -1,28 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Личный кабинет</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
-    <link rel="stylesheet" href="/Style/mainStyle.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <meta name=viewport content="width=1920">
-    <meta name=viewport content="height=800">
-    <style>
-    #NameGame1{
-        text-align:center;
-        display:inline-block;
-        margin-top: 20px;
-        margin-bottom: 500px;
-        color: white;
-        font-family: 'Varela Round', sans-serif;
-        font-size: 25px;
-        text-decoration: none;
-        position: relative;
-    }
-    </style>
+  <meta charset="UTF-8">
+  <title>Смена имени</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+  <link rel="stylesheet" href="/Style/mainStyle.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <meta name=viewport content="width=1920">
+  <meta name=viewport content="height=800">
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+  <style>
+  #NameGame1{
+      text-align:center;
+      display:inline-block;
+      margin-top: 20px;
+      margin-bottom: 500px;
+      color: white;
+      font-family: 'Varela Round', sans-serif;
+      font-size: 25px;
+      text-decoration: none;
+      position: relative;
+  }
+  </style>
 </head>
 <body>
 <div class="header">
@@ -79,6 +80,27 @@
                <p>Привет  <?php $_COOKIE['user'] ?>.Чтобы выйти нажмите  <a href="php/exit.php">здесь</a> </p>
            <?php endif; ?>
 
+
+          <?php
+          if($_COOKIE['user']==''):?>
+        <?php else:?>
+          <div class="container mt-4">
+            <div align="center">
+              <h2>Смена имени</h2>
+            <form  action="checkName.php" method="post">
+              <div class="form-group">
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" name="login"  id="login" placeholder="Введите логин"><br>
+                  <input type="text" class="form-control" name="name"  id="ChangeName" placeholder="Введите новое имя"><br>
+                  <button class="btn btn-success"  type ="submit" >Сменить</button>
+                </div>
+              </div>
+            </form>
+              </div>
+            <form action="exit.php">
+            <button id="ButtonExit" class="btn btn-success">Выйти</button>
+            </form>
+          <?php endif;?>
         </div>
     </div>
 </body>
@@ -86,10 +108,10 @@
 
 
 
+
 <?php
 $login = filter_var(trim($_POST['login']), FILTER_SANITIZE_STRING);
 $name = filter_var(trim($_POST['name']), FILTER_SANITIZE_STRING);
-$pass = filter_var(trim($_POST['pass']), FILTER_SANITIZE_STRING);
 
 if (mb_strlen($login) < 3 || mb_strlen($login) > 90) {
   echo"<script>swal(\"Недопустимая длина логина!\", \"Логин содержит от 3 до 90 символов\", \"error\");</script>";
@@ -97,28 +119,26 @@ if (mb_strlen($login) < 3 || mb_strlen($login) > 90) {
 } elseif (mb_strlen($name) < 3 || mb_strlen($name) > 50) {
     echo"<script>swal(\"Недопустимая длина имени!\", \"Имя содержит от 3 до 50 символов\", \"error\");</script>";
     exit();
-} elseif (mb_strlen($pass) < 10 || mb_strlen($pass) > 30) {
-    echo"<script>swal(\"Недопустимая длина пароля!\", \"Пароль содержит от 10 до 30 символов\", \"error\");</script>";
+} elseif ($login != $_COOKIE['nowlogin']) {
+    echo"<script>swal(\"Логин не совпадает с вашим!\", \"Введите ваш логин\", \"error\");</script>";
     exit();
 }
-
-
-$pass = md5($pass."QafjhgjgH74");
 
 $mysql = new mysqli('localhost', 'root', 'root', 'register-bd');
 if ($mysql->connect_error) {
     die("<script>swal(\"Ошибка!\", \"Не удается установить соединение с базой данных\", \"error\");</script>");
 }
 
-$result = $mysql->query("SELECT * FROM `users` WHERE `login`='$login'");
-$user = $result->fetch_assoc();
-if(count($user)==0){
-  $mysql->query("INSERT INTO `users` (`login` , `pass` , `name`)
-  VALUES('$login','$pass','$name')");
+$result = $mysql->query("SELECT `name` FROM `users` WHERE `login`='$login'");
+$row = $result->fetch_array();
+if(count($row)>0){
+  $mysql->query("UPDATE `users` set `name`='$name' WHERE `login`='$login'");
   $mysql->close();
-  echo"<script>swal(\"Успешно!\", \"Вы зарегистрировались успешно\", \"success\");</script>";
-}else{
-  echo"<script>swal(\"Такой пользователь уже зарегистрирован!\", \"Поменяйте логин\", \"error\");</script>";
+  echo"<script>swal(\"Успешно!\", \"Вы сменили имя\", \"success\");</script>";
+  setcookie('user',$name,time() + 3600,"/");
+}
+else{
+  echo"<script>swal(\"Такой пользователь не существует!\", \"Поменяйте логин на существующий\", \"error\");</script>";
   $mysql->close();
   exit();
 }

@@ -8,13 +8,26 @@
     <link rel="stylesheet" href="/Style/mainStyle.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-             <meta name=viewport content="width=1920">
-             <meta name=viewport content="height=800">
+    <meta name=viewport content="width=1920">
+    <meta name=viewport content="height=800">
+    <style>
+    #NameGame1{
+        text-align:center;
+        display:inline-block;
+        margin-top: 20px;
+        margin-bottom: 500px;
+        color: white;
+        font-family: 'Varela Round', sans-serif;
+        font-size: 25px;
+        text-decoration: none;
+        position: relative;
+    }
+    </style>
 </head>
 <body>
 <div class="header">
     <ul class="hr">
-        <li><a href="index.html" id="NameGame">e-Manager</a></li>
+        <li><a href="index.html" id="NameGame1">e-Manager</a></li>
         <li><a href="account.php" id="styleLinkAccount">Личный кабинет</a></li>
     </ul>
 </div>
@@ -36,7 +49,7 @@
       <?php
        if ($_COOKIE['user']==''):
         ?>
-        <h1 id="MainForms">Авторизуйтесь или зарегиструруйтесь</h1>
+        <h1 id="MainForms">Авторизуйтесь или зарегистрируйтесь</h1>
         <div class="row" id="Form_registr">
            <div class="col">
              <h1>Форма регистрации</h1>
@@ -94,6 +107,7 @@ exit();
 }
 
 setcookie('user',$user['name'],time() + 3600,"/");
+setcookie('nowlogin',$login,time() + 3600,"/");
 
 $mysql->close();
 

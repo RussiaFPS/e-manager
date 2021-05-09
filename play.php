@@ -374,9 +374,8 @@ $card_users5;
 $result = $mysql->query("SELECT * FROM `users` WHERE `login`='$UserName'");
 $user = $result->fetch_assoc();
 if(count($user)==0){
-echo"<script>swal(\"Вы не авторизованы!\", \"Нужно авторизоваться\", \"error\");</script>";
 $mysql->close();
-exit();
+header('Location:/account.php');
 }else{
     $result2 = $mysql->query("SELECT * FROM `users` WHERE `login`='$UserName'");
     while($row = mysqli_fetch_assoc($result2))

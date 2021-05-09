@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Varela+Round');
+
 body {
     margin: 0;
     font-family: "Lato", sans-serif;
@@ -40,7 +42,6 @@ video::-webkit-media-controls {
     display:none !important;
 }
 
-@import url('https://fonts.googleapis.com/css?family=Varela+Round');
 html, body {
     overflow-x: hidden;
     height: 100%;
@@ -50,6 +51,7 @@ body {
     padding: 0;
     margin: 0;
     font-family: 'Varela Round', sans-serif;
+
 }
 .header {
     display: block;
@@ -63,6 +65,7 @@ body {
     overflow: hidden;
     z-index: 10;
 }
+
 .main {
     margin: 0 auto;
     display: block;
@@ -234,4 +237,3 @@ ul li{
     left: 44%;
     top: 17%;
 }
-
