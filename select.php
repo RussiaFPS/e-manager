@@ -2,7 +2,7 @@
     $selected1 = $_POST['select_card1'];$selected2 = $_POST['select_card2']; $selected3 = $_POST['select_card3'];$selected4 = $_POST['select_card4'];$selected5 = $_POST['select_card5'];
     $id_card1;$id_card2;$id_card3;$id_card4;$id_card5;
     $role_selected1;$role_selected2;$role_selected3;$role_selected4;$role_selected5;
-    $UserName=$_COOKIE['user'];
+    $UserName=$_COOKIE['login'];
 
     $mysql = new mysqli('localhost', 'root', 'root', 'register-bd');
     $result_select = $mysql->query("SELECT * FROM `list_card` WHERE `viewer_name`='$selected1'");

@@ -52,7 +52,7 @@
     <form action="select.php" method="POST">
         <select name="select_card1" class="selectpicker form-control" style='position:absolute;left:5%;top:75%;width:170px;height:40px'>
             <?php
-            $UserName=$_COOKIE['user'];
+            $UserName=$_COOKIE['login'];
             $select1;$select2;$select3;$select4;$select5;$select6;$select7;$select8;$select9;$select10;
             $active1;$active2;$active3;$active4;$active5;
             $active_name1;$active_name2;$active_name3;$active_name4;$active_name5;
@@ -211,7 +211,7 @@
 
          <select name="select_card2" class="selectpicker form-control" style='position:absolute;left:25%;top:75%;width:170px;height:40px'>
                     <?php
-                    $UserName=$_COOKIE['user'];
+                    $UserName=$_COOKIE['login'];
                     $select21;$select22;$select23;$select24;$select25;$select26;$select27;$select28;$select29;$select210;
                     $mysql = new mysqli('localhost', 'root', 'root', 'register-bd');
 
@@ -248,7 +248,7 @@
                 <?php     $mysql->close(); ?>
                 <select name="select_card3" class="selectpicker form-control" style='position:absolute;left:45%;top:75%;width:170px;height:40px'>
                                     <?php
-                                    $UserName=$_COOKIE['user'];
+                                    $UserName=$_COOKIE['login'];
                                     $select31;$select32;$select33;$select34;$select35;$select36;$select37;$select38;$select39;$select310;
                                     $mysql = new mysqli('localhost', 'root', 'root', 'register-bd');
                                         $result_select = $mysql->query("SELECT * FROM `inventory` WHERE `login`='$UserName'");
@@ -282,7 +282,7 @@
                                 <?php     $mysql->close(); ?>
                 <select name="select_card4" class="selectpicker form-control" style='position:absolute;left:65%;top:75%;width:170px;height:40px'>
                                     <?php
-                                    $UserName=$_COOKIE['user'];
+                                    $UserName=$_COOKIE['login'];
                                     $select41;$select42;$select43;$select44;$select45;$select46;$select47;$select48;$select49;$select410;
                                     $mysql = new mysqli('localhost', 'root', 'root', 'register-bd');
                                         $result_select = $mysql->query("SELECT * FROM `inventory` WHERE `login`='$UserName'");
@@ -317,7 +317,7 @@
 
          <select name="select_card5" class="selectpicker form-control" style='position:absolute;left:85%;top:75%;width:170px;height:40px'>
                              <?php
-                             $UserName=$_COOKIE['user'];
+                             $UserName=$_COOKIE['login'];
                              $select51;$select52;$select53;$select54;$select55;$select56;$select57;$select58;$select59;$select510;
                              $mysql = new mysqli('localhost', 'root', 'root', 'register-bd');
                                  $result_select = $mysql->query("SELECT * FROM `inventory` WHERE `login`='$UserName'");
@@ -358,7 +358,7 @@
     ?>
   </body>
 <?php
-$UserName=$_COOKIE['user'];
+$UserName=$_COOKIE['login'];
 $mysql = new mysqli('localhost', 'root', 'root', 'register-bd');
 
 if ($mysql->connect_error) {

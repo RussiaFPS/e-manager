@@ -110,11 +110,56 @@ if ($mysql->connect_error) {
     die("<script>swal(\"Ошибка!\", \"Не удается установить соединение с базой данных\", \"error\");</script>");
 }
 
+$player_IGL;$player_LUR;$player_SUP;$player_SNI;$player_ENT;
+
+$result_select = $mysql->query("SELECT * FROM `list_card` WHERE `role`='IGL'");
+                                            while($row = mysqli_fetch_assoc($result_select))
+                                            {
+                                                $player_IGL[] = $row['viewer_name'];
+                                            }
+                                            $player_number = array_rand($player_IGL, 1);
+                                            $player_IGL = $player_IGL [$player_number];
+
+                                            $result_select = $mysql->query("SELECT * FROM `list_card` WHERE `role`='LUR'");
+                                                                                        while($row = mysqli_fetch_assoc($result_select))
+                                                                                        {
+                                                                                            $player_LUR[] = $row['viewer_name'];
+                                                                                        }
+                                                                                        $player_number = array_rand($player_LUR, 1);
+                                                                                        $player_LUR = $player_LUR [$player_number];
+
+
+                                                                                        $result_select = $mysql->query("SELECT * FROM `list_card` WHERE `role`='SUP'");
+                                                                                                                                    while($row = mysqli_fetch_assoc($result_select))
+                                                                                                                                    {
+                                                                                                                                        $player_SUP[] = $row['viewer_name'];
+                                                                                                                                    }
+                                                                                                                                    $player_number = array_rand($player_SUP, 1);
+                                                                                                                                    $player_SUP = $player_SUP [$player_number];
+
+                                                                                                                                    $result_select = $mysql->query("SELECT * FROM `list_card` WHERE `role`='SNI'");
+                                                                                                                                                                                while($row = mysqli_fetch_assoc($result_select))
+                                                                                                                                                                                {
+                                                                                                                                                                                    $player_SNI[] = $row['viewer_name'];
+                                                                                                                                                                                }
+                                                                                                                                                                                $player_number = array_rand($player_SNI, 1);
+                                                                                                                                                                                $player_SNI = $player_SNI [$player_number];
+
+                                                                                                                                                                                $result_select = $mysql->query("SELECT * FROM `list_card` WHERE `role`='ENT'");
+                                                                                                                                                                                                                            while($row = mysqli_fetch_assoc($result_select))
+                                                                                                                                                                                                                            {
+                                                                                                                                                                                                                                $player_ENT[] = $row['viewer_name'];
+                                                                                                                                                                                                                            }
+                                                                                                                                                                                                                            $player_number = array_rand($player_ENT, 1);
+                                                                                                                                                                                                                            $player_ENT = $player_ENT [$player_number];
+
 $result = $mysql->query("SELECT * FROM `users` WHERE `login`='$login'");
 $user = $result->fetch_assoc();
 if(count($user)==0){
   $mysql->query("INSERT INTO `users` (`login` , `pass` , `name`)
   VALUES('$login','$pass','$name')");
+  $mysql->query("INSERT INTO `inventory` (`login` , `viewer_name1` , `viewer_name2` , `viewer_name3` , `viewer_name4` , `viewer_name5`)
+    VALUES('$login','$player_IGL','$player_LUR','$player_SUP','$player_SNI','$player_ENT')");
   $mysql->close();
   echo"<script>swal(\"Успешно!\", \"Вы зарегистрировались успешно\", \"success\");</script>";
 }else{
