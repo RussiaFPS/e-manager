@@ -350,7 +350,22 @@
                             </select>
 
         <?php     $mysql->close(); ?>
-        <input type="submit" value="Сохранить" class="btn btn-success" style='position:absolute;left:45%;top:85%;width:170px;height:40px'>
+        <input type="submit" value="Сохранить" class="btn btn-success" style='position:absolute;left:45%;top:90%;width:170px;height:40px'>
+        </form>
+    <form action="choice_def_player.php" method="POST">
+        <input type="submit" name="_Submit_def" value="Убрать игрока1" class="btn btn-danger" style='position:absolute;left:5%;top:82%;width:170px;height:40px'>
+    </form>
+    <form action="choice_def_player.php" method="POST">
+            <input type="submit" name="_Submit_def" value="Убрать игрока2" class="btn btn-danger" style='position:absolute;left:25%;top:82%;width:170px;height:40px'>
+    </form>
+    <form action="choice_def_player.php" method="POST">
+            <input type="submit" name="_Submit_def" value="Убрать игрока3" class="btn btn-danger" style='position:absolute;left:45%;top:82%;width:170px;height:40px'>
+    </form>
+    <form action="choice_def_player.php" method="POST">
+            <input type="submit" name="_Submit_def" value="Убрать игрока4" class="btn btn-danger" style='position:absolute;left:65%;top:82%;width:170px;height:40px'>
+    </form>
+    <form action="choice_def_player.php" method="POST">
+            <input type="submit" name="_Submit_def" value="Убрать игрока5" class="btn btn-danger" style='position:absolute;left:85%;top:82%;width:170px;height:40px'>
         </form>
     </div>
     <?php
