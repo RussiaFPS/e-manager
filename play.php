@@ -41,8 +41,13 @@
         <li><a href="#">Таблица лидеров</a></li>
       </ul>
     </div>
-    <div class="inner">
+    <div class="myTeam">
         <h1>Моя команда</h1>
+    </div>
+    <div>
+                <form action="event.php">
+                    <input type="submit" value="Ивенты" class="btn btn-primary" style='position:absolute;left:45%;top:17%;width:170px;height:40px'>
+                </form>
     </div>
 
     <?php
