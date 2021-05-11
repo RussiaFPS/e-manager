@@ -451,12 +451,33 @@ $result_player2 = "/Source/{$card_name2}";
 $result_player3 = "/Source/{$card_name3}";
 $result_player4 = "/Source/{$card_name4}";
 $result_player5 = "/Source/{$card_name5}";
+$result_player_def = "/Source/gold1.png";
 
-echo "<img src=\"".$result_player1."\" width=\"300\" height=\"400\" style='position:absolute;left:0%;top:25%;''>";
-echo "<img src=\"".$result_player2."\" width=\"300\" height=\"400\" style='position:absolute;left:20%;top:25%;''>";
-echo "<img src=\"".$result_player3."\" width=\"300\" height=\"400\" style='position:absolute;left:40%;top:25%;''>";
-echo "<img src=\"".$result_player4."\" width=\"300\" height=\"400\" style='position:absolute;left:60%;top:25%;''>";
-echo "<img src=\"".$result_player5."\" width=\"300\" height=\"400\" style='position:absolute;left:80%;top:25%;''>";
+if($result_player1!="/Source/"){
+    echo "<img src=\"".$result_player1."\" width=\"300\" height=\"400\" style='position:absolute;left:0%;top:25%;''>";
+}else{
+    echo "<img src=\"".$result_player_def."\" width=\"300\" height=\"400\" style='position:absolute;left:0%;top:25%;''>";
+}
+if($result_player2!="/Source/"){
+    echo "<img src=\"".$result_player2."\" width=\"300\" height=\"400\" style='position:absolute;left:20%;top:25%;''>";
+}else{
+    echo "<img src=\"".$result_player_def."\" width=\"300\" height=\"400\" style='position:absolute;left:20%;top:25%;''>";
+}
+if($result_player3!="/Source/"){
+    echo "<img src=\"".$result_player3."\" width=\"300\" height=\"400\" style='position:absolute;left:40%;top:25%;''>";
+}else{
+    echo "<img src=\"".$result_player_def."\" width=\"300\" height=\"400\" style='position:absolute;left:40%;top:25%;''>";
+}
+if($result_player4!="/Source/"){
+    echo "<img src=\"".$result_player4."\" width=\"300\" height=\"400\" style='position:absolute;left:60%;top:25%;''>";
+}else{
+    echo "<img src=\"".$result_player_def."\" width=\"300\" height=\"400\" style='position:absolute;left:60%;top:25%;''>";
+}
+if($result_player5!="/Source/"){
+    echo "<img src=\"".$result_player5."\" width=\"300\" height=\"400\" style='position:absolute;left:80%;top:25%;''>";
+}else{
+    echo "<img src=\"".$result_player_def."\" width=\"300\" height=\"400\" style='position:absolute;left:80%;top:25%;''>";
+}
 
 $mysql->close();
 
