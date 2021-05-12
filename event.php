@@ -44,10 +44,44 @@
         <div style = 'position: absolute;left: 41%;top: 7%;'>
             <h1>Список ивентов</h1>
         </div>
-    <div>
-        <button class="btn btn-primary" style='position:absolute;left:45%;top:17%;width:170px;height:40px' onclick="window.location.href='play.php'">Вернуться</button>
-    </div>
+        <div style ='position:absolute;left:5%;top:25%;'>
+            <img src="/Source/e-lig.png" style="width:350px;height:350px;"/>
+            <p id="styleLinkAccount" style='left:17%;top:100%;'>Ежедвневная лига с призовыми до 500$</p>
+        </div>
+            <div>
+                <button class="btn btn-primary" style='position:absolute;left:45%;top:17%;width:170px;height:40px' onclick="window.location.href='play.php'">Вернуться</button>
+            </div>
+        <?php
+        $UserName=$_COOKIE['login'];
+        $mysql = new mysqli('localhost', 'root', 'root', 'register-bd');
+        date_default_timezone_set('Europe/Moscow');
+        $today = date("Y-m-d H:i:s");
+        $bd_date;
 
+        $result_select = $mysql->query("SELECT * FROM `e-lig` WHERE `login`='$UserName'");
+         while($row = mysqli_fetch_assoc($result_select))
+                                                {
+                                                    $bd_date[] = $row['reg_date'];
+
+                                                }
+                            $bd_date = join(',', $bd_date);
+         $date = $bd_date;
+         $datetime = new DateTime($date);
+         $datetime->modify('-1 day');
+         $bd_date = $datetime->format('Y-m-d H:i:s');
+
+         if(strtotime($today) <= strtotime($bd_date)){
+         ?>
+        <div style ='position:absolute;left:13%;top:80%;'>
+                    <form action="e-lig.php">
+                                        <input type="submit" value="Учавствовать" class="btn btn-success" style=style='position:absolute;left:55%;top:55%;width:170px;height:40px'>
+                                    </form>
+        </div>
+        <?php
+        }else{
+              #СЮДА КОД ПРОДОЛЖИТЬ
+        }
+        ?>
     </div>
 </body>
 
