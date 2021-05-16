@@ -53,6 +53,15 @@
     $rat_res = $rat_1+$rat_2+$rat_3+$rat_4+$rat_5;
     $chan = random_int(1 , 100);
     $exp;$mon;
+    $result_select = $mysql->query("SELECT * FROM `users` WHERE `login`='$UserName'");
+                                while($row = mysqli_fetch_assoc($result_select))
+                                                                       {
+                                                                            $exp[] = $row['score'];
+                                                                            $mon[] = $row['money'];
+                                                                       }
+    $exp = join(',', $exp);$mon = join(',', $mon);
+
+
 
     if($rat_res <= 250 and $chan >= 95){
             $exp+=random_int(100 , 150);
