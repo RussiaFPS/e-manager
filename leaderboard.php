@@ -42,7 +42,7 @@
     <ul class="sidebarMenuInner">
       <li><a href="play.php" >Играть</a></li>
       <li><a href="#" >Магазин</a></li>
-      <li><a href="#">Таблица лидеров</a></li>
+      <li><a href="leaderboard.php">Таблица лидеров</a></li>
     </ul>
   </div>
 
@@ -87,24 +87,72 @@
           <div class="container mt-4">
             <div align="center">
               <h2>Таблица лидеров</h2>
-              <table border="1">
-                <tr>
-                  <td>ID</td>
-                  <td>Name</td>
-                  <td>Score</td>
-                </tr>
-                <?php while($user = $res->fetch(PDO::FETCH_OBJ)) : ?>
+              <?php
+              $mysql = new mysqli('localhost', 'root', 'root', 'register-bd');
+              if ($mysql->connect_error) {
+                die('<script>swal("Ошибка!", "Не удается установить соединение с базой данных", "error");</script>');
+              }
+
+              $sql = $mysql->query('SELECT `name`,`score` FROM `users` ORDER BY `score` DESC');
+              ?>
+              <table class="table_blur">
                   <tr>
-                    <td><?php echo (int) $user->id; ?></td>
-                    <td><?php echo htmlspecialchars($user->name); ?></td>
-                    <td><b><?php echo (int) $user->score; ?></b></td>
+                    <th>Номер</th>
+                    <th>Имя</th>
+                    <th>Счет</th>
                   </tr>
-                <?php endwhile; ?>
-              </table>
+                  <?php for ($i = 1; $i <= 10; $i++){
+                    $result = mysqli_fetch_array($sql); ?>
+                      <tr>
+                          <td><?php
+                              echo $i;
+                              ?></td>
+                          <td align="center"><?php echo "{$result['name']}";?></td>
+                          <td align="center"><?php echo "{$result['score']}";?></td>
+                      </tr>
+                      <?php
+                        }
+                        ?>
+                        </table>
+                        <?php
+                        $log = $_COOKIE['nowlogin'];
+                        $count = 0;
+                        $all = $mysql->query('SELECT `name`,`score`,`login` FROM `users` ORDER BY `score` DESC');
+                        while ($result = mysqli_fetch_array($all)) {
+                          $count++;
+                          if ($log == $result['login']){                            
+                            break;
+                          }
+                        }
+
+                        $mysql = new mysqli('localhost', 'root', 'root', 'register-bd');
+                        if ($mysql->connect_error) {
+                          die('<script>swal("Ошибка!", "Не удается установить соединение с базой данных", "error");</script>');
+                        }
+
+                        $sql = $mysql->query("SELECT `name`,`score` FROM `users` WHERE `login`='$log'");
+                        ?>
+                        <h2>Ваш статистика </h2>
+                        <table class="table_blur">
+                          <tr>
+                            <th>Номер</th>
+                            <th>Имя</th>
+                            <th>Счет</th>
+                          </tr>
+                          <?php while ($result = mysqli_fetch_array($sql)) {?>
+                              <tr>
+                                  <td align="center"><?php echo "{$count}";?></td>
+                                  <td align="center"><?php echo "{$result['name']}";?></td>
+                                  <td align="center"><?php echo "{$result['score']}";?></td>
+                              </tr>
+                              <?php
+                                }
+                                ?>
+                        </table>
             </div>
-            <form action="exit.php">
-            <button id="ButtonExit" class="btn btn-success">Выйти</button>
-            </form>
+            <?php
+            $mysql->close();
+            ?>
           <?php endif;?>
         </div>
     </div>

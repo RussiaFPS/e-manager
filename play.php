@@ -20,11 +20,22 @@
      -o-background-size: cover;
      background-size: cover;
    }
+   #NameGame1{
+       text-align:center;
+       display:inline-block;
+       margin-top: 20px;
+       margin-bottom: 500px;
+       color: white;
+       font-family: 'Varela Round', sans-serif;
+       font-size: 25px;
+       text-decoration: none;
+       position: relative;
+   }
   </style>
 <body>
   <div class="header">
       <ul class="hr">
-          <li><a href="index.html" id="NameGame">e-Manager</a></li>
+          <li><a href="index.html" id="NameGame1">e-Manager</a></li>
           <li><a href="account.php" id="styleLinkAccount">Личный кабинет</a></li>
       </ul>
   </div>
@@ -38,7 +49,7 @@
       <ul class="sidebarMenuInner">
         <li><a href="play.php" >Играть</a></li>
         <li><a href="#" >Магазин</a></li>
-        <li><a href="#">Таблица лидеров</a></li>
+        <li><a href="leaderboard.php">Таблица лидеров</a></li>
       </ul>
     </div>
     <div class="myTeam">
