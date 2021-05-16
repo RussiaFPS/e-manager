@@ -107,6 +107,7 @@ exit();
 }
 
 setcookie('user',$user['name'],time() + 3600,"/");
+setcookie('login',$user['login'],time() + 3600,"/");
 setcookie('nowlogin',$login,time() + 3600,"/");
 
 $mysql->close();

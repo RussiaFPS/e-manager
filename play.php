@@ -41,8 +41,35 @@
         <li><a href="#">Таблица лидеров</a></li>
       </ul>
     </div>
-    <div class="inner">
+    <div class="myTeam">
         <h1>Моя команда</h1>
+    </div>
+    <div>
+                <form action="event.php">
+                    <input type="submit" value="Ивенты" class="btn btn-primary" style='position:absolute;left:45%;top:17%;width:170px;height:40px'>
+                </form>
+    </div>
+
+    <?php
+    $UserName=$_COOKIE['login'];
+    $mysql = new mysqli('localhost', 'root', 'root', 'register-bd');
+    $exp;$mon;
+
+    $result_select = $mysql->query("SELECT * FROM `users` WHERE `login`='$UserName'");
+                        while($row = mysqli_fetch_assoc($result_select))
+                        {
+                            $exp[] = $row['score'];
+                            $money[] = $row['money'];
+                        }
+    $exp = join(',', $exp);$money = join(',', $money);
+    $mysql->close();
+    ?>
+    <div style ='position:absolute;left:5%;top:15%;width: 300px;'>
+                <p id="styleLinkAccount" style='left:5%;top:100%;color:black;'>Бюджет: <?php echo $money;?> $</p>
+    </div>
+
+    <div style ='position:absolute;right:5%;top:15%;width: 300px;'>
+                    <p id="styleLinkAccount" style='left:5%;top:100%;color:black;'>Опыт: <?php echo $exp;?> exp</p>
     </div>
 
     <?php
@@ -52,7 +79,7 @@
     <form action="select.php" method="POST">
         <select name="select_card1" class="selectpicker form-control" style='position:absolute;left:5%;top:75%;width:170px;height:40px'>
             <?php
-            $UserName=$_COOKIE['user'];
+            $UserName=$_COOKIE['login'];
             $select1;$select2;$select3;$select4;$select5;$select6;$select7;$select8;$select9;$select10;
             $active1;$active2;$active3;$active4;$active5;
             $active_name1;$active_name2;$active_name3;$active_name4;$active_name5;
@@ -211,7 +238,7 @@
 
          <select name="select_card2" class="selectpicker form-control" style='position:absolute;left:25%;top:75%;width:170px;height:40px'>
                     <?php
-                    $UserName=$_COOKIE['user'];
+                    $UserName=$_COOKIE['login'];
                     $select21;$select22;$select23;$select24;$select25;$select26;$select27;$select28;$select29;$select210;
                     $mysql = new mysqli('localhost', 'root', 'root', 'register-bd');
 
@@ -248,7 +275,7 @@
                 <?php     $mysql->close(); ?>
                 <select name="select_card3" class="selectpicker form-control" style='position:absolute;left:45%;top:75%;width:170px;height:40px'>
                                     <?php
-                                    $UserName=$_COOKIE['user'];
+                                    $UserName=$_COOKIE['login'];
                                     $select31;$select32;$select33;$select34;$select35;$select36;$select37;$select38;$select39;$select310;
                                     $mysql = new mysqli('localhost', 'root', 'root', 'register-bd');
                                         $result_select = $mysql->query("SELECT * FROM `inventory` WHERE `login`='$UserName'");
@@ -282,7 +309,7 @@
                                 <?php     $mysql->close(); ?>
                 <select name="select_card4" class="selectpicker form-control" style='position:absolute;left:65%;top:75%;width:170px;height:40px'>
                                     <?php
-                                    $UserName=$_COOKIE['user'];
+                                    $UserName=$_COOKIE['login'];
                                     $select41;$select42;$select43;$select44;$select45;$select46;$select47;$select48;$select49;$select410;
                                     $mysql = new mysqli('localhost', 'root', 'root', 'register-bd');
                                         $result_select = $mysql->query("SELECT * FROM `inventory` WHERE `login`='$UserName'");
@@ -317,7 +344,7 @@
 
          <select name="select_card5" class="selectpicker form-control" style='position:absolute;left:85%;top:75%;width:170px;height:40px'>
                              <?php
-                             $UserName=$_COOKIE['user'];
+                             $UserName=$_COOKIE['login'];
                              $select51;$select52;$select53;$select54;$select55;$select56;$select57;$select58;$select59;$select510;
                              $mysql = new mysqli('localhost', 'root', 'root', 'register-bd');
                                  $result_select = $mysql->query("SELECT * FROM `inventory` WHERE `login`='$UserName'");
@@ -350,7 +377,22 @@
                             </select>
 
         <?php     $mysql->close(); ?>
-        <input type="submit" value="Сохранить" class="btn btn-success" style='position:absolute;left:45%;top:85%;width:170px;height:40px'>
+        <input type="submit" value="Сохранить" class="btn btn-success" style='position:absolute;left:45%;top:90%;width:170px;height:40px'>
+        </form>
+    <form action="choice_def_player.php" method="POST">
+        <input type="submit" name="_Submit_def" value="Убрать игрока1" class="btn btn-danger" style='position:absolute;left:5%;top:82%;width:170px;height:40px'>
+    </form>
+    <form action="choice_def_player.php" method="POST">
+            <input type="submit" name="_Submit_def" value="Убрать игрока2" class="btn btn-danger" style='position:absolute;left:25%;top:82%;width:170px;height:40px'>
+    </form>
+    <form action="choice_def_player.php" method="POST">
+            <input type="submit" name="_Submit_def" value="Убрать игрока3" class="btn btn-danger" style='position:absolute;left:45%;top:82%;width:170px;height:40px'>
+    </form>
+    <form action="choice_def_player.php" method="POST">
+            <input type="submit" name="_Submit_def" value="Убрать игрока4" class="btn btn-danger" style='position:absolute;left:65%;top:82%;width:170px;height:40px'>
+    </form>
+    <form action="choice_def_player.php" method="POST">
+            <input type="submit" name="_Submit_def" value="Убрать игрока5" class="btn btn-danger" style='position:absolute;left:85%;top:82%;width:170px;height:40px'>
         </form>
     </div>
     <?php
@@ -358,7 +400,7 @@
     ?>
   </body>
 <?php
-$UserName=$_COOKIE['user'];
+$UserName=$_COOKIE['login'];
 $mysql = new mysqli('localhost', 'root', 'root', 'register-bd');
 
 if ($mysql->connect_error) {
@@ -451,12 +493,33 @@ $result_player2 = "/Source/{$card_name2}";
 $result_player3 = "/Source/{$card_name3}";
 $result_player4 = "/Source/{$card_name4}";
 $result_player5 = "/Source/{$card_name5}";
+$result_player_def = "/Source/gold1.png";
 
-echo "<img src=\"".$result_player1."\" width=\"300\" height=\"400\" style='position:absolute;left:0%;top:25%;''>";
-echo "<img src=\"".$result_player2."\" width=\"300\" height=\"400\" style='position:absolute;left:20%;top:25%;''>";
-echo "<img src=\"".$result_player3."\" width=\"300\" height=\"400\" style='position:absolute;left:40%;top:25%;''>";
-echo "<img src=\"".$result_player4."\" width=\"300\" height=\"400\" style='position:absolute;left:60%;top:25%;''>";
-echo "<img src=\"".$result_player5."\" width=\"300\" height=\"400\" style='position:absolute;left:80%;top:25%;''>";
+if($result_player1!="/Source/"){
+    echo "<img src=\"".$result_player1."\" width=\"300\" height=\"400\" style='position:absolute;left:0%;top:25%;''>";
+}else{
+    echo "<img src=\"".$result_player_def."\" width=\"300\" height=\"400\" style='position:absolute;left:0%;top:25%;''>";
+}
+if($result_player2!="/Source/"){
+    echo "<img src=\"".$result_player2."\" width=\"300\" height=\"400\" style='position:absolute;left:20%;top:25%;''>";
+}else{
+    echo "<img src=\"".$result_player_def."\" width=\"300\" height=\"400\" style='position:absolute;left:20%;top:25%;''>";
+}
+if($result_player3!="/Source/"){
+    echo "<img src=\"".$result_player3."\" width=\"300\" height=\"400\" style='position:absolute;left:40%;top:25%;''>";
+}else{
+    echo "<img src=\"".$result_player_def."\" width=\"300\" height=\"400\" style='position:absolute;left:40%;top:25%;''>";
+}
+if($result_player4!="/Source/"){
+    echo "<img src=\"".$result_player4."\" width=\"300\" height=\"400\" style='position:absolute;left:60%;top:25%;''>";
+}else{
+    echo "<img src=\"".$result_player_def."\" width=\"300\" height=\"400\" style='position:absolute;left:60%;top:25%;''>";
+}
+if($result_player5!="/Source/"){
+    echo "<img src=\"".$result_player5."\" width=\"300\" height=\"400\" style='position:absolute;left:80%;top:25%;''>";
+}else{
+    echo "<img src=\"".$result_player_def."\" width=\"300\" height=\"400\" style='position:absolute;left:80%;top:25%;''>";
+}
 
 $mysql->close();
 
