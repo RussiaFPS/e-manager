@@ -120,7 +120,7 @@
                         $all = $mysql->query('SELECT `name`,`score`,`login` FROM `users` ORDER BY `score` DESC');
                         while ($result = mysqli_fetch_array($all)) {
                           $count++;
-                          if ($log == $result['login']){                            
+                          if ($log == $result['login']){
                             break;
                           }
                         }
@@ -132,7 +132,7 @@
 
                         $sql = $mysql->query("SELECT `name`,`score` FROM `users` WHERE `login`='$log'");
                         ?>
-                        <h2>Ваш статистика </h2>
+                        <h2>Ваша статистика </h2>
                         <table class="table_blur">
                           <tr>
                             <th>Номер</th>
