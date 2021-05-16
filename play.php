@@ -51,6 +51,28 @@
     </div>
 
     <?php
+    $UserName=$_COOKIE['login'];
+    $mysql = new mysqli('localhost', 'root', 'root', 'register-bd');
+    $exp;$mon;
+
+    $result_select = $mysql->query("SELECT * FROM `users` WHERE `login`='$UserName'");
+                        while($row = mysqli_fetch_assoc($result_select))
+                        {
+                            $exp[] = $row['score'];
+                            $money[] = $row['money'];
+                        }
+    $exp = join(',', $exp);$money = join(',', $money);
+    $mysql->close();
+    ?>
+    <div style ='position:absolute;left:5%;top:15%;width: 300px;'>
+                <p id="styleLinkAccount" style='left:5%;top:100%;color:black;'>Бюджет: <?php echo $money;?> $</p>
+    </div>
+
+    <div style ='position:absolute;right:5%;top:15%;width: 300px;'>
+                    <p id="styleLinkAccount" style='left:5%;top:100%;color:black;'>Опыт: <?php echo $exp;?> exp</p>
+    </div>
+
+    <?php
     if($_COOKIE['user']!=''){
     ?>
     <div class="container mt-4">
