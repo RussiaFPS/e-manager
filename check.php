@@ -160,6 +160,8 @@ if(count($user)==0){
   VALUES('$login','$pass','$name')");
   $mysql->query("INSERT INTO `inventory` (`login` , `viewer_name1` , `viewer_name2` , `viewer_name3` , `viewer_name4` , `viewer_name5`)
     VALUES('$login','$player_IGL','$player_LUR','$player_SUP','$player_SNI','$player_ENT')");
+  $mysql->query("INSERT INTO `e-lig` (`login` , `status`)
+    VALUES('$login','YES')");
   $mysql->close();
   echo"<script>swal(\"Успешно!\", \"Вы зарегистрировались успешно\", \"success\");</script>";
 }else{

@@ -46,7 +46,7 @@
         </div>
         <div style ='position:absolute;left:5%;top:25%;'>
             <img src="/Source/e-lig.png" style="width:350px;height:350px;"/>
-            <p id="styleLinkAccount" style='left:17%;top:100%;'>Ежедвневная лига с призовыми до 50 000$</p>
+            <p id="styleLinkAccount" style='left:17%;top:100%;'>Ежедневная лига с призовыми до 50 000$</p>
         </div>
             <div>
                 <button class="btn btn-primary" style='position:absolute;left:45%;top:17%;width:170px;height:40px' onclick="window.location.href='play.php'">Вернуться</button>
@@ -92,6 +92,7 @@
                                                   </form>
                       </div>
                       <?php
+        $mysql->close();
         }
         ?>
     </div>
