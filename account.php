@@ -40,7 +40,7 @@
     <ul class="sidebarMenuInner">
       <li><a href="play.php" >Играть</a></li>
       <li><a href="#" >Магазин</a></li>
-      <li><a href="#">Таблица лидеров</a></li>
+      <li><a href="leaderboard.php">Таблица лидеров</a></li>
     </ul>
   </div>
 
@@ -86,7 +86,7 @@
                 <input type="image" id="Avatar" src="Source/avatar.jpg">
                 </div>
             <p id="AccountHello"><?=$_COOKIE['user']?></p>
-                </div>            
+                </div>
             <form action="ChangeName.php">
             <button id="ButtonChangeName" class="btn btn-success">Сменить имя</button>
             </form>

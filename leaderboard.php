@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Смена пароля</title>
+  <title>Таблица лидеров</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
   <link rel="stylesheet" href="/Style/mainStyle.css">
@@ -86,60 +86,75 @@
         <?php else:?>
           <div class="container mt-4">
             <div align="center">
-              <h2>Смена пароля</h2>
-            <form  action="checkPass.php" method="post">
-              <div class="form-group">
-                <div class="col-sm-10">
-                  <input type="text" class="form-control" name="login"  id="login" placeholder="Введите логин"><br>
-                  <input type="password" class="form-control" name="pass"  id="ChangePass" placeholder="Введите новый пароль"><br>
-                  <button class="btn btn-success"  type ="submit" >Сменить</button>
-                </div>
-              </div>
-            </form>
-              </div>
-            <form action="exit.php">
-            <button id="ButtonExit" class="btn btn-success">Выйти</button>
-            </form>
+              <h2>Таблица лидеров</h2>
+              <?php
+              $mysql = new mysqli('localhost', 'root', 'root', 'register-bd');
+              if ($mysql->connect_error) {
+                die('<script>swal("Ошибка!", "Не удается установить соединение с базой данных", "error");</script>');
+              }
+
+              $sql = $mysql->query('SELECT `name`,`score` FROM `users` ORDER BY `score` DESC');
+              ?>
+              <table class="table_blur">
+                  <tr>
+                    <th>Номер</th>
+                    <th>Имя</th>
+                    <th>Счет</th>
+                  </tr>
+                  <?php for ($i = 1; $i <= 10; $i++){
+                    $result = mysqli_fetch_array($sql); ?>
+                      <tr>
+                          <td><?php
+                              echo $i;
+                              ?></td>
+                          <td align="center"><?php echo "{$result['name']}";?></td>
+                          <td align="center"><?php echo "{$result['score']}";?></td>
+                      </tr>
+                      <?php
+                        }
+                        ?>
+                        </table>
+                        <?php
+                        $log = $_COOKIE['nowlogin'];
+                        $count = 0;
+                        $all = $mysql->query('SELECT `name`,`score`,`login` FROM `users` ORDER BY `score` DESC');
+                        while ($result = mysqli_fetch_array($all)) {
+                          $count++;
+                          if ($log == $result['login']){
+                            break;
+                          }
+                        }
+
+                        $mysql = new mysqli('localhost', 'root', 'root', 'register-bd');
+                        if ($mysql->connect_error) {
+                          die('<script>swal("Ошибка!", "Не удается установить соединение с базой данных", "error");</script>');
+                        }
+
+                        $sql = $mysql->query("SELECT `name`,`score` FROM `users` WHERE `login`='$log'");
+                        ?>
+                        <h2>Ваша статистика </h2>
+                        <table class="table_blur">
+                          <tr>
+                            <th>Номер</th>
+                            <th>Имя</th>
+                            <th>Счет</th>
+                          </tr>
+                          <?php while ($result = mysqli_fetch_array($sql)) {?>
+                              <tr>
+                                  <td align="center"><?php echo "{$count}";?></td>
+                                  <td align="center"><?php echo "{$result['name']}";?></td>
+                                  <td align="center"><?php echo "{$result['score']}";?></td>
+                              </tr>
+                              <?php
+                                }
+                                ?>
+                        </table>
+            </div>
+            <?php
+            $mysql->close();
+            ?>
           <?php endif;?>
         </div>
     </div>
 </body>
 </html>
-
-
-
-
-<?php
-$login = filter_var(trim($_POST['login']), FILTER_SANITIZE_STRING);
-$pass = filter_var(trim($_POST['pass']), FILTER_SANITIZE_STRING);
-
-if (mb_strlen($login) < 3 || mb_strlen($login) > 90) {
-  echo"<script>swal(\"Недопустимая длина логина!\", \"Логин содержит от 3 до 90 символов\", \"error\");</script>";
-    exit();
-}elseif (mb_strlen($pass) < 10 || mb_strlen($pass) > 30) {
-    echo"<script>swal(\"Недопустимая длина пароля!\", \"Пароль содержит от 10 до 30 символов\", \"error\");</script>";
-    exit();
-}elseif ($login != $_COOKIE['nowlogin']) {
-    echo"<script>swal(\"Логин не совпадает с вашим!\", \"Введите ваш логин\", \"error\");</script>";
-    exit();
-}
-
-$pass = md5($pass."QafjhgjgH74");
-
-$mysql = new mysqli('localhost', 'root', 'root', 'register-bd');
-if ($mysql->connect_error) {
-    die("<script>swal(\"Ошибка!\", \"Не удается установить соединение с базой данных\", \"error\");</script>");
-}
-
-$result = $mysql->query("SELECT `pass` FROM `users` WHERE `login`='$login'");
-$row = $result->fetch_assoc();
-if(count($row)>0){
-  $mysql->query("UPDATE `users` set `pass`='$pass' WHERE `login`='$login'");
-  $mysql->close();
-  echo"<script>swal(\"Успешно!\", \"Вы сменили пароль\", \"success\");</script>";
-}else{
-  echo"<script>swal(\"Такой пользователь не существует!\", \"Поменяйте логин на существующий\", \"error\");</script>";
-  $mysql->close();
-  exit();
-}
-?>
