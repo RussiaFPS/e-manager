@@ -51,25 +51,43 @@
 </body>
 </html>
 <?php
-        $id_buy_cards;$name_buy_cards;$left=5;$top=50;
+        $id_buy_cards;$name_buy_cards;$viewer_name;$left=5;$top=50;$buy_price;$left_text=6;$top_text=100;
         $mysql = new mysqli('localhost', 'root', 'root', 'register-bd');
         $result_select = $mysql->query("SELECT * FROM `list_card`");
             while($row = mysqli_fetch_assoc($result_select)){
                  $id_buy_cards[] = $row['id'];
                  $name_buy_cards[] = $row['name_card'];
+                 $viewer_name[] = $row['viewer_name'];
+                 $buy_price[] = $row ['buy_price'];
             }
 
 
         for ($i = 0; $i < count($name_buy_cards); $i++) {
             $result_player = "/Source/{$name_buy_cards[$i]}";
-            echo "<img src=\"".$result_player."\" width=\"300\" height=\"400\" style='position:absolute;left:{$left}%;top:{$top}%;'>";
+            echo "<img src=\"".$result_player."\" width=\"300\" height=\"400\" style='position:absolute;left:{$left}%;top:{$top}%;'/><h1 style='position:absolute;left: {$left_text}%;top:{$top_text}%;font-size:28px;'>Цена покупки {$buy_price[$i]} $</h1>";
 
             $left=$left + 35;
+            $left_text=$left_text + 35;
             if($i%3 == 0 and $i!=0){
                 $left = 5;
-                $top = $top + 50;
+                $top = $top + 70;
+                $left_text = 6;
+                $top_text = $top_text + 70;
             }
         }
+
+        ?>
+            <div style ='position:absolute;left:12%;top:15%;width: 300px;'>
+                        <p id="styleLinkAccount" style='left:5%;top:100%;color:black;font-size:38px;'>Купить игрока</p>
+            </div>
+         <form action="buy_cards.php" method="POST">
+         <select name="select_buy_cards" class="selectpicker form-control" style='position:absolute;left:15%;top:25%;width:200px;height:40px'>
+             <option value="" selected disabled hidden>Выбор игрока</option>
+                        <?php foreach($viewer_name as $value){echo "<option value={$value}>{$value}</option>";}?>
+         </selected>
+         <input type="submit" value="Купить" class="btn btn-success" style='position:absolute;left:16%;top:33%;width:170px;height:40px'>
+         </form>
+         <?php
 
 
         $mysql->close();
