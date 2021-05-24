@@ -61,18 +61,22 @@
                  $buy_price[] = $row ['buy_price'];
             }
 
-
+        $count = 1;
         for ($i = 0; $i < count($name_buy_cards); $i++) {
             $result_player = "/Source/{$name_buy_cards[$i]}";
             echo "<img src=\"".$result_player."\" width=\"300\" height=\"400\" style='position:absolute;left:{$left}%;top:{$top}%;'/><h1 style='position:absolute;left: {$left_text}%;top:{$top_text}%;font-size:28px;'>Цена покупки {$buy_price[$i]} $</h1>";
 
+
             $left=$left + 35;
             $left_text=$left_text + 35;
-            if($i%3 == 0 and $i!=0){
+            if($count==3){
                 $left = 5;
                 $top = $top + 70;
                 $left_text = 6;
                 $top_text = $top_text + 70;
+                $count=1;
+            }else{
+                $count=$count+1;
             }
         }
 
