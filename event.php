@@ -37,7 +37,7 @@
     <div id="sidebarMenu">
       <ul class="sidebarMenuInner">
         <li><a href="play.php" >Играть</a></li>
-        <li><a href="#" >Магазин</a></li>
+        <li><a href="store.php" >Магазин</a></li>
         <li><a href="leaderboard.php">Таблица лидеров</a></li>
       </ul>
     </div>
