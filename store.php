@@ -138,9 +138,15 @@
                   <input type="submit" value="Продать" class="btn btn-success" style='position:absolute;right:18%;top:33%;width:170px;height:40px'>
                   </form>
 
-             <div style ='position:absolute;right:37%;top:15%;width: 400px;'>
+             <div style ='position:absolute;right:40%;top:15%;width: 400px;'>
                       <p id="styleLinkAccount" style='right:0%;top:100%;color:black;font-size:38px;'>Бюджет: <?php echo $money;?> $</p>
              </div>
+
+             <div style ='position:absolute;left:44%;top:33%;'>
+                                 <form action="invent.php">
+                                                     <input type="submit" value="Инвентарь" class="btn btn-success" style='position:absolute;left:10%;top:33%;width:170px;height:40px'>
+                                                 </form>
+                     </div>
          <?php
 
         $mysql->close();
